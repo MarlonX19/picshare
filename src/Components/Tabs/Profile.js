@@ -16,7 +16,7 @@ window.Blob = Blob
 
 
 const options = {
-    title: 'My pic app',
+    title: 'Compartilhe momentos',
     takePhotoButtonTitle: 'Tire foto',
     chooseFromLibraryButtonTitle: 'Escolha foto da galeria',
 
@@ -43,26 +43,29 @@ class Profile extends Component {
       componentWillMount(){
         this.setState({ loading: true});
 
-        firebase.database().ref('localFoto')  //Conecta ao banco de dados e procura as frases no nó de sugestões
+        //Conecta ao banco de dados e procura as frases no nó de sugestões
+        firebase.database().ref('localFoto')  
            .once('value')
            .then(snapshot => {
-  
-           var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); //Transforma o objeto literal trazido do Banco de Dados em array
-           let y = _.size(fotoUrl);                        //Verifica o tamanho do array
+            
+          //Transforma o objeto literal trazido do Banco de Dados em array
+           var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); 
+           let y = _.size(fotoUrl);   //Verifica o tamanho do array
            this.setState({ data: fotoUrl })
    
-           
            })
 
       }
 
       _updateScreen(){
-        firebase.database().ref('localFoto')  //Conecta ao banco de dados e procura as frases no nó de sugestões
+        //Conecta ao banco de dados e procura as frases no nó de sugestões
+        firebase.database().ref('localFoto') 
         .once('value')
         .then(snapshot => {
 
-        var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); //Transforma o objeto literal trazido do Banco de Dados em array
-        let y = _.size(fotoUrl);                        //Verifica o tamanho do array
+        //Transforma o objeto literal trazido do Banco de Dados em array
+        var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); 
+        let y = _.size(fotoUrl);     //Verifica o tamanho do array
         this.setState({ data: fotoUrl })
         
         })
@@ -104,7 +107,7 @@ class Profile extends Component {
 
 
       uploadProfilePic(uri, imageName, mime = 'image/jpeg') {
-        this.setState({loadingProfileImg: false});
+        this.setState({ loadingProfileImg: false })
         return new Promise ((resolve, reject) => {
           const uploadUri = Platform.OS === 'ios' ? uri.replace('file//', '') : uri
           let uploadBlob = null
@@ -143,12 +146,24 @@ class Profile extends Component {
         
           if(param == 'profile'){
               ImagePicker.showImagePicker(options2, (response) => {
-              this.uploadProfilePic(response.path, response.fileName);
+                if (response.didCancel) {
+                  console.log('cancelou upload da imagem');
+                } else if (response.error) {
+                  console.log('ImagePicker Error: ', response.error);
+                } else {
+                  this.uploadProfilePic(response.path, response.fileName);
+                }
             })
             
           } else {
               ImagePicker.showImagePicker(options, (response) => {
-              this.uploadImage(response.path, response.fileName);
+                if (response.didCancel) {
+                  console.log('cancelou upload da imagem');
+                } else if (response.error) {
+                  console.log('ImagePicker Error: ', response.error);
+                } else {
+                  this.uploadImage(response.path, response.fileName);
+                }
             }) 
           }  
       }
@@ -156,9 +171,7 @@ class Profile extends Component {
 
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
-            
             <Icon name="person" style={{ color: tintColor }} />
-         
         )
     }
 
@@ -175,7 +188,7 @@ class Profile extends Component {
             </View>
           )
         } else {
-          return ( <ActivityIndicator size="large" color="#0000ff" /> )
+          return ( <ActivityIndicator size="large" color="red" /> )
         }
     }
 
@@ -187,17 +200,17 @@ class Profile extends Component {
                       <TouchableOpacity
                         onPress={() => this.myfun()}
                       >
-                        <Icon name="md-camera" style={{paddingLeft: 10}}></Icon>
+                        <Icon name="md-camera"></Icon>
                       </TouchableOpacity>
                     </Left>
-                    <Body style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize: 21, fontWeight: 'bold', marginLeft: 80}}>PicShare</Text>
-                    </Body>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{fontSize: 21, fontWeight: 'bold'}}>PicShare</Text>
+                    </View>
                   <Right>
                       <TouchableOpacity
                         onPress={() => false}
                       >
-                        <Icon name="md-search" style={{paddingRight: 10}}></Icon>
+                        <Icon name="md-search"></Icon>
                       </TouchableOpacity>
                    </Right>
               </Header>
