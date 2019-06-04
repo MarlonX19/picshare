@@ -17,12 +17,14 @@ class MainScreen extends Component {
 
       componentWillMount(){
 
-        firebase.database().ref('localFoto')  //Conecta ao banco de dados e procura as frases no nó de sugestões
+        //Conecta ao banco de dados e procura as fotos no nó de sugestões
+        firebase.database().ref('localFoto')  
            .once('value')
            .then(snapshot => {
-  
-           var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); //Transforma o objeto literal trazido do Banco de Dados em array
-           let y = _.size(fotoUrl);                        //Verifica o tamanho do array
+            
+            //Transforma o objeto literal trazido do Banco de Dados em array
+           var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); 
+           let y = _.size(fotoUrl);   //Verifica o tamanho do array
            this.setState({ data: fotoUrl })
            
            })

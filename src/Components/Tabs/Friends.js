@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Platform, View, StyleSheet, Button} from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { Icon, Container, Content } from 'native-base';
 
 import CardComponent from '../CardComponent';
@@ -7,9 +7,7 @@ import CardComponent from '../CardComponent';
 class Friends extends Component {
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
-            
             <Icon name="md-people" style={{ color: tintColor }} />
-         
         )
     }
 

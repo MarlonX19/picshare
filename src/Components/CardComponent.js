@@ -9,17 +9,19 @@ class CardComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          //defauilt value of the date time
+          //default value of the date time
           date: '',
           data: null
         }
 
-        firebase.database().ref('localFoto')  //Conecta ao banco de dados e procura as frases no nó de sugestões
+        //Conecta ao banco de dados e procura as fotos no nó de sugestões
+        firebase.database().ref('localFoto')  
         .once('value')
         .then(snapshot => {
 
-        var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); //Transforma o objeto literal trazido do Banco de Dados em array
-        let y = _.size(fotoUrl);                        //Verifica o tamanho do array
+        //Transforma o objeto literal trazido do Banco de Dados em array
+        var fotoUrl = _.map(snapshot.val(), 'imageUrl' )
+        let y = _.size(fotoUrl);     //Verifica o tamanho do array
         this.setState({ data: fotoUrl })
         
         })
@@ -49,57 +51,51 @@ class CardComponent extends Component {
 
     render() {
         return(
-            <Card>
-                <CardItem>
-                    <Left>
-                        <Thumbnail source={require('./imgs/marlonfoto.png')}
-                            style={{width: 60, height: 60}} />
-                        <Body>
-                            <Text style={{fontWeight: 'bold', color: 'black'}} >Marlon</Text>
-                            <Text note>{ this.state.date }</Text>
-                        </Body>
-                    </Left>
-                </CardItem>
-                <TouchableWithoutFeedback
-                        onLongPress={() => Alert.alert('Foto curtida')}
-                    >
-                <CardItem cardBody>
-                <FlatList
-                    data={this.state.data}
-                    keyExtractor={item => item}
-                    numColumns={1} // Número de colunas
-                    renderItem={( {item} ) => {
-                        return (
-                        <View style={styles.item}>
-                            <TouchableWithoutFeedback
-                                onPress={() =>  false }
-                            >
-                                <Image source={ {uri: item} }
-                                 style={{width: null, height: 400}} />
-                            </TouchableWithoutFeedback>
-                        </View>
-                        );
-                    }}
-                    />
-                </CardItem>
-                </TouchableWithoutFeedback>
-                <CardItem style={{height: 40}}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name="ios-heart" style={{color: 'black'}} />
-                        </Button>
-                        <Button transparent>
-                            <Icon name="ios-chatbubbles" style={{color: 'black'}} />
-                        </Button>
-                        <Button transparent>
-                            <Icon name="ios-send" style={{color: 'black'}} />
-                        </Button>
-                    </Left>
-                </CardItem>
-                <CardItem style={{height: 20}}>
-                    <Text>{Math.floor((Math.random() * 300) + 20)} likes</Text>
-                </CardItem>
-            </Card>
+            <View style={{ flex: 1, backgroundColor: 'lightgrey' }}>
+                <Card>
+                    <CardItem cardBody>
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={item => item}
+                            numColumns={1} // Número de colunas
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={styles.item}>
+                                        <CardItem>
+                                            <Left>
+                                                <Thumbnail source={require('./imgs/marlonfoto.png')}
+                                                    style={{ width: 60, height: 60 }} />
+                                                <Body>
+                                                    <Text style={{ fontWeight: 'bold', color: 'black' }} >Marlon</Text>
+                                                    <Text note>{this.state.date}</Text>
+                                                </Body>
+                                            </Left>
+                                        </CardItem>
+                                        <Image source={{ uri: item }}
+                                            style={{ width: null, height: 400 }} />
+                                        <CardItem style={{ height: 40 }}>
+                                            <Left>
+                                                <Button transparent>
+                                                    <Icon name="ios-heart" style={{ color: 'black' }} />
+                                                </Button>
+                                                <Button transparent>
+                                                    <Icon name="ios-chatbubbles" style={{ color: 'black' }} />
+                                                </Button>
+                                                <Button transparent>
+                                                    <Icon name="ios-send" style={{ color: 'black' }} />
+                                                </Button>
+                                            </Left>
+                                        </CardItem>
+                                        <CardItem style={{ height: 20 }}>
+                                            <Text>{Math.floor((Math.random() * 300) + 20)} likes</Text>
+                                        </CardItem>
+                                    </View>
+                                );
+                            }}
+                        />
+                    </CardItem>
+                </Card>
+            </View>
         )
     }
 }
@@ -111,6 +107,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    item: {
+        marginBottom: 15
     }
 });
 
