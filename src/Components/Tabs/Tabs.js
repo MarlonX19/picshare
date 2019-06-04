@@ -1,23 +1,22 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 
 import MainScreen from '../MainScreen';
 import Friends from './Friends';
-import Profile from './Profile';
 import Recents from './Recents';
+import Profile from './Profile';
 
 
-
-const tabNavigator = (createBottomTabNavigator(
+const tabNavigator = createBottomTabNavigator(
       {
         // Define the tabs available
        MainScreen: MainScreen,
        Friends: Friends,
        Recents: Recents,
        Profile: Profile
-
-      },
+       
+       },
 
       {
 
@@ -33,6 +32,6 @@ const tabNavigator = (createBottomTabNavigator(
         },
       }
     )
-  );
+  ;
 
 export default createAppContainer(tabNavigator)

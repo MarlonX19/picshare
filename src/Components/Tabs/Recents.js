@@ -7,9 +7,7 @@ import ListRecents from '../ListRecents';
 class Recents extends Component {
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
-            
             <Icon name="md-heart" style={{ color: tintColor }} />
-         
         )
     }
 
