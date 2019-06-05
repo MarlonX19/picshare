@@ -30,7 +30,11 @@ const options2 = {
 }
 
 class Profile extends Component {
-    constructor(props){
+  static navigationOptions = {
+    header: null
+  }
+
+  constructor(props){
         super(props);
     
         this.state = {
@@ -169,13 +173,6 @@ class Profile extends Component {
       }
 
 
-    static navigationOptions = {
-        tabBarIcon: ({tintColor}) => (
-            <Icon name="person" style={{ color: tintColor }} />
-        )
-    }
-
-
     _loadingProfileImg() {
         if(this.state.loadingProfileImg){
           return (
@@ -254,8 +251,11 @@ class Profile extends Component {
                     renderItem={( {item} ) => {
                         return (
                         <View style={styles.item}>
+                           
                             <TouchableWithoutFeedback
-                                onPress={() =>  false }
+                                onPress={() =>  this.props.navigation.navigate('SelfPhotoDetails', {
+                                  photoUrl: item
+                                }) }
                             >
                                 <Image source={ {uri: item} }
                                  style={{width: 137, height: 120}} />
