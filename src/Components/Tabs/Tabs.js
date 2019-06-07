@@ -3,11 +3,11 @@ import { Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import { Icon } from 'native-base';
 
-import MainScreen from '../MainScreen';
-import Friends from './Friends';
-import Recents from './Recents';
-import Profile from './Profile';
-import SelfPhotoDetails from '../InnerViews/SelfPhotoDetails';
+import MainScreen from '../routes/MainScreen';
+import Friends from '../routes/Friends';
+import Recents from '../routes/Recents';
+import Profile from '../routes/Profile';
+import SelfPhotoDetails from '../routes/innerRoutes/SelfPhotoDetails';
 
 
 const ProfileStack = createStackNavigator(

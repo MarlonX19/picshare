@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Platform, View, StyleSheet, Image, Alert, FlatList, TouchableWithoutFeedback} from 'react-native';
+import { Text, Platform, View, StyleSheet, Image, Alert, FlatList } from 'react-native';
 import { Icon, Card, CardItem, Body, Left, Right, Button, Thumbnail } from 'native-base';
 import firebase from 'firebase';
 import _ from 'lodash';
@@ -63,7 +63,7 @@ class CardComponent extends Component {
                                     <View style={styles.item}>
                                         <CardItem>
                                             <Left>
-                                                <Thumbnail source={require('./imgs/marlonfoto.png')}
+                                                <Thumbnail source={require('../imgs/marlonfoto.png')}
                                                     style={{ width: 60, height: 60 }} />
                                                 <Body>
                                                     <Text style={{ fontWeight: 'bold', color: 'black' }} >Marlon</Text>

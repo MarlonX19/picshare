@@ -29,7 +29,7 @@ export default class SelfPhotoDetails extends Component {
                 <Card>
                     <CardItem>
                         <Left>
-                            <Thumbnail source={require('../imgs/marlonfoto.png')}
+                            <Thumbnail source={require('../../imgs/marlonfoto.png')}
                                 style={{ width: 60, height: 60 }} />
                             <Body>
                                 <Text style={{ fontWeight: 'bold', color: 'black' }} >Marlon</Text>

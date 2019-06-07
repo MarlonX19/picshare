@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, Platform, ScrollView, View, StyleSheet, Button} from 'react-native';
 import { Icon, Container, Content, Title, Header } from 'native-base';
 
-import ListRecents from '../ListRecents';
+import ListRecents from './ListRecents';
 
 class Recents extends Component {
     static navigationOptions = {
