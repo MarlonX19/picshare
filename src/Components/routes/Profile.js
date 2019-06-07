@@ -235,7 +235,7 @@ class Profile extends Component {
                            <Text> 22 Posts</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                         onPress={() => false}
+                         onPress={() => this.props.navigation.navigate('EditProfileInfo')}
                          
                         >
                            <Text>Editar</Text>

@@ -8,12 +8,15 @@ import Friends from '../routes/Friends';
 import Recents from '../routes/Recents';
 import Profile from '../routes/Profile';
 import SelfPhotoDetails from '../routes/innerRoutes/SelfPhotoDetails';
+import EditProfileInfo from '../routes/innerRoutes/EditProfileInfo';
 
 
 const ProfileStack = createStackNavigator(
   {
     Profile: Profile,
-    SelfPhotoDetails: SelfPhotoDetails
+    SelfPhotoDetails: SelfPhotoDetails,
+    EditProfileInfo: EditProfileInfo,
+
   },
   {
     navigationOptions: ({ tintColor }) => ({

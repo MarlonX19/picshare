@@ -19,7 +19,7 @@ class ListRecents extends Component {
                    <List>
                        <ListItem>
                            <Thumbnail circle size={60} source={require('../imgs/donnie.jpg')}/>
-                           <Text style={styles.text}>  Donnie curtiu sua foto</Text>
+                           <Text style={styles.text}>  Donnie liked your pic </Text>
                            <Icon name="md-heart" style={{color: "red", marginLeft: 135}}></Icon>
                        </ListItem>
                    </List>
