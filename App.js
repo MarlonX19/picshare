@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 
-
-import Tabs from './src/components/Tabs/Tabs';
+import Tabs from './src/components/tabs/Tabs';
 import {firebaseAPI} from './src/components/config/Config';
 
 
