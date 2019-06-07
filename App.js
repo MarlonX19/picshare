@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 
-import Tabs from './src/Components/Tabs/Tabs';
-import {firebaseAPI} from './src/Components/Config/Config';
+import Tabs from './src/components/Tabs/Tabs';
+import {firebaseAPI} from './src/components/config/Config';
 
 
 export default class App extends Component {

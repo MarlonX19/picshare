@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { Icon } from 'native-base';
 
 import MainScreen from '../MainScreen';
 import Friends from './Friends';
@@ -13,6 +14,14 @@ const ProfileStack = createStackNavigator(
   {
     Profile: Profile,
     SelfPhotoDetails: SelfPhotoDetails
+  },
+  {
+    navigationOptions: ({ tintColor }) => ({
+      title: 'Profile',
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="person" style={{ color: tintColor }} />
+    )
+    }),
   }
 
 );
@@ -36,7 +45,7 @@ const tabNavigator = createBottomTabNavigator(
       inactiveTintColor: 'gray',
       showIcon: true,
       scrollEnabled: true,
-      showLabel: false,
+      showLabel: true,
 
     },
   }
