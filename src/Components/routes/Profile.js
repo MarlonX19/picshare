@@ -44,9 +44,7 @@ class Profile extends Component {
         }
       }
 
-      componentWillMount(){
-        this.setState({ loading: true});
-
+      componentDidMount(){
         //Conecta ao banco de dados e procura as frases no nó de sugestões
         firebase.database().ref('localFoto')  
            .once('value')
@@ -63,13 +61,12 @@ class Profile extends Component {
 
       _updateScreen(){
         //Conecta ao banco de dados e procura as frases no nó de sugestões
-        firebase.database().ref('localFoto') 
+        firebase.database().ref('localFoto/') 
         .once('value')
         .then(snapshot => {
 
         //Transforma o objeto literal trazido do Banco de Dados em array
-        var fotoUrl = _.map(snapshot.val(), 'imageUrl' ); 
-        let y = _.size(fotoUrl);     //Verifica o tamanho do array
+        var fotoUrl = _.map(snapshot.val(), 'imageUrl' );
         this.setState({ data: fotoUrl })
         
         })
@@ -115,7 +112,7 @@ class Profile extends Component {
         return new Promise ((resolve, reject) => {
           const uploadUri = Platform.OS === 'ios' ? uri.replace('file//', '') : uri
           let uploadBlob = null
-          const imageRef = firebase.storage().ref('image/').child(imageName)
+          const imageRef = firebase.storage().ref('user/images/profile/').child(imageName)
             fs.readFile(uploadUri, 'base64')
               .then((data) => {
                 return Blob.build(data, { type: `${mime};BASE64` })
@@ -129,7 +126,7 @@ class Profile extends Component {
                 return imageRef.getDownloadURL()
               })
               .then((url) => {
-                firebase.database().ref('localFoto/').push({
+                firebase.database().ref('user/images/profile/').push({
                   profileUrl: url
                 });
                 this.setState({ avatarSource: url });
