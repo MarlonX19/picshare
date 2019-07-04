@@ -9,20 +9,9 @@ export default class SelfPhotoDetails extends Component {
         title: 'Foto',
       }
 
-    constructor(props){
-        super(props)
-
-        this.state = {
-            imageUrl: ''
-        }
-    }
-
-    componentDidMount() {
-        this.setState({ imageUrl: this.props.navigation.getParam('photoUrl') })
-        console.log(this.props.photoUrl)
-    }
 
     render() {
+        const photo = this.props.navigation.getParam('photoUrl');
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <ScrollView>
@@ -33,11 +22,10 @@ export default class SelfPhotoDetails extends Component {
                                 style={{ width: 60, height: 60 }} />
                             <Body>
                                 <Text style={{ fontWeight: 'bold', color: 'black' }} >Marlon</Text>
-                                <Text note>{this.state.date}</Text>
                             </Body>
                         </Left>
                     </CardItem>
-                    <Image style={{ width: 400, height: 400 }} source={{ uri: this.state.imageUrl }} />
+                    <Image style={{ width: 400, height: 400 }} source={{ uri: photo }} />
                     <CardItem style={{ height: 40 }}>
                         <Left>
                             <Button transparent>
