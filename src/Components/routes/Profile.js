@@ -40,7 +40,7 @@ class Profile extends Component {
         this.state = {
           avatarSource: null,
           loadingProfileImg: true,
-          data: null
+          data: []
         }
       }
 
